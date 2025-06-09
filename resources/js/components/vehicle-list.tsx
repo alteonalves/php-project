@@ -30,7 +30,7 @@ export default function () {
         <div className="flex-col items-center justify-center">
             <div className="flex justify-end">
                 <Link href="/create">
-                    <Button>Adicionar Veículo</Button>
+                    <Button className="cursor-pointer">Adicionar Veículo</Button>
                 </Link>
             </div>
             <BarCharts totalByYear={totalByYear} totalByBrands={totalByBrands} />
@@ -50,7 +50,7 @@ export default function () {
                 <TableBody>
                     {vehicles &&
                         vehicles.map((vh: Vehicle) => (
-                            <TableRow key={vh.id} onClick={() => gotoEdit(vh.id)}>
+                            <TableRow key={vh.id} onClick={() => gotoEdit(vh.id)} className="cursor-pointer">
                                 <TableCell>{vh.vehicle}</TableCell>
                                 <TableCell>{vh.brand}</TableCell>
                                 <TableCell>{vh.year}</TableCell>
