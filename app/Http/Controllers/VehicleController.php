@@ -22,7 +22,7 @@ class VehicleController extends Controller
 
         $vehicles = Vehicles::query();
         if ($brand) {
-            $vehicles->where('brand', $brand);
+            $vehicles->where('brand', 'like', '%' . $brand. '%');
         }
         if ($vehicle) {
             $vehicles->where('vehicle', 'like', '%' . $vehicle . '%');
@@ -31,6 +31,7 @@ class VehicleController extends Controller
             $vehicles->where('year', $year);
         }
 
+        $vehiclesList = $vehicles->orderByDesc('updated_at')->get();
         $totalByBrands = Vehicles::select('brand', \DB::raw('count(*) as total'))
             ->groupBy('brand')
             ->get();
@@ -39,7 +40,7 @@ class VehicleController extends Controller
             ->get();
 
         $data = [
-            'vehicles' => $vehicles->orderByDesc('updated_at')->get(),
+            'vehicles' => $vehiclesList,
             'totalByBrands' => $totalByBrands,
             'totalByYear' => $totalByYear,
         ];

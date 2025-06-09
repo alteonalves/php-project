@@ -23,7 +23,7 @@ class FilterVehiclesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'brand' => ['nullable', new ValidBrand()],
+            'brand' => ['nullable'],
             'vehicle' => ['nullable'],
             'year' => ['nullable', 'integer'],
         ];
